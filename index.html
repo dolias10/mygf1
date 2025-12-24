@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- 초기 설정 화면 -->
+    <div id="setup-screen" class="screen active">
+        <div class="setup-container">
+            <div class="instagram-logo">
+                <svg width="175" height="51" viewBox="0 0 175 51" fill="currentColor">
+                    <path d="M6.52 0.42H0v50h6.52V0.42zM50.46 15.1c-4.14 0-7.22 1.93-8.88 5.04V15.94h-6.4v34.48h6.66V32.08c0-5.52 2.88-8.64 7.08-8.64 4.08 0 6.24 2.88 6.24 8.04v18.94h6.66V30.5c0-9.18-4.68-15.4-11.36-15.4zM70.64 43.66c0 2.4-1.92 4.32-4.32 4.32s-4.32-1.92-4.32-4.32c0-2.4 1.92-4.32 4.32-4.32s4.32 1.92 4.32 4.32zM88.44 43.78c-2.28 0-4.32-.84-5.76-2.22l-3.48 4.56c2.34 2.1 5.7 3.48 9.6 3.48 6.78 0 11.28-4.02 11.28-10.26 0-11.04-14.64-8.52-14.64-13.74 0-1.68 1.44-2.88 3.84-2.88 2.16 0 4.14.72 5.64 1.92l3.12-4.8c-2.28-1.8-5.28-2.88-8.76-2.88-6.3 0-10.62 3.78-10.62 9.66 0 10.74 14.64 8.46 14.64 13.68 0 2.04-1.74 3.48-4.86 3.48zM110.44 23.62h3.96v-7.68h-3.96v-7.2h-6.66v7.2h-3.3v7.68h3.3v26.8h6.66v-26.8zM127.24 15.1c-3.3 0-6.12 1.38-7.92 3.72-.84-2.34-3.3-3.72-6.18-3.72-3.18 0-5.7 1.26-7.32 3.6V15.94h-6.4v34.48h6.66v-18.6c0-4.8 2.34-7.74 5.88-7.74 3.06 0 4.92 2.16 4.92 6.18v20.16h6.66v-18.6c0-4.8 2.34-7.74 5.88-7.74 3.06 0 4.92 2.16 4.92 6.18v20.16h6.66V29.38c0-8.58-4.26-14.28-10.76-14.28zM157.66 15.1c-3.66 0-6.66 1.38-8.46 3.9V15.94h-6.4v34.48h6.66V31.96c0-5.88 3.12-8.88 7.56-8.88 1.02 0 1.92.12 2.64.3v-7.98c-.54-.18-1.26-.3-2-.3zM174.94 34.06c0 9.18-6.18 15.54-15.18 15.54-9 0-15.18-6.36-15.18-15.54 0-9.18 6.18-15.54 15.18-15.54 9 0 15.18 6.36 15.18 15.54zm-6.84 0c0-5.58-3.42-9.42-8.34-9.42-4.92 0-8.34 3.84-8.34 9.42 0 5.58 3.42 9.42 8.34 9.42 4.92 0 8.34-3.84 8.34-9.42z"/>
+                </svg>
+            </div>
+            
+            <div class="setup-form">
+                <div class="input-group">
+                    <label for="ai-name">AI 이름</label>
+                    <input type="text" id="ai-name" placeholder="지수" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="user-name">내 이름</label>
+                    <input type="text" id="user-name" placeholder="민수" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="persona">페르소나 (AI 성격 설정)</label>
+                    <textarea id="persona" rows="5" placeholder="예: 너는 밝고 긍정적인 성격의 여자친구야. 항상 따뜻하게 대화하고, 내 이야기를 공감하며 들어줘. 가끔 귀여운 이모티콘도 사용해줘." required></textarea>
+                </div>
+
+                <button id="start-chat" class="btn-primary">시작하기</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 채팅 화면 -->
+    <div id="chat-screen" class="screen">
+        <div class="chat-container">
+            <!-- 헤더 -->
+            <div class="chat-header">
+                <button class="back-btn" id="back-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+                <div class="profile-section" id="profile-btn">
+                    <div class="profile-image">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="ai-name-display">AI</h2>
+                        <span class="status">현재 활동중</span>
+                    </div>
+                </div>
+                <button class="info-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="1.5" fill="currentColor"/>
+                        <circle cx="12" cy="6" r="1.5" fill="currentColor"/>
+                        <circle cx="12" cy="18" r="1.5" fill="currentColor"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- 메시지 영역 -->
+            <div id="messages" class="messages-container"></div>
+
+            <!-- 입력 영역 -->
+            <div class="input-container">
+                <button class="icon-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/>
+                        <circle cx="8.5" cy="10" r="1.5" fill="currentColor"/>
+                        <circle cx="15.5" cy="10" r="1.5" fill="currentColor"/>
+                        <path d="M8 14.5C8.5 15.5 10 16.5 12 16.5C14 16.5 15.5 15.5 16 14.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="input-wrapper">
+                    <textarea id="message-input" placeholder="메시지..." rows="1"></textarea>
+                </div>
+                <button id="send-btn" class="send-btn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M22 2L11 13M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 페르소나 편집 모달 -->
+    <div id="persona-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-btn" id="close-modal">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <h2>정보</h2>
+                <button class="save-btn-header" id="save-persona">완료</button>
+            </div>
+            <div class="modal-body">
+                <div class="profile-edit-section">
+                    <div class="profile-image-large">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="4" stroke="currentColor" stroke-width="1.5"/>
+                            <path d="M4 20C4 16.6863 6.68629 14 10 14H14C17.3137 14 20 16.6863 20 20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="edit-ai-name">이름</label>
+                    <input type="text" id="edit-ai-name">
+                </div>
+                <div class="input-group">
+                    <label for="edit-persona">페르소나</label>
+                    <textarea id="edit-persona" rows="6"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
