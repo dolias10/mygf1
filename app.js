@@ -191,7 +191,7 @@ async function sendMessage() {
 
 // Gemini API 호출
 async function callGeminiAPI(userMessage) {
-    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=${GEMINI_API_KEY}`;
+    const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
     
     // 시스템 프롬프트 구성
     const systemPrompt = `${AppState.persona}
