@@ -1,0 +1,577 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --ig-primary: #0095f6;
+    --ig-secondary: #8e8e8e;
+    --ig-border: #dbdbdb;
+    --ig-bg: #ffffff;
+    --ig-hover: #fafafa;
+    --ig-text: #262626;
+    --ig-text-light: #8e8e8e;
+    --ig-blue-gradient: linear-gradient(45deg, #405de6, #5851db, #833ab4, #c13584, #e1306c, #fd1d1d);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--ig-bg);
+    color: var(--ig-text);
+    overflow: hidden;
+}
+
+/* 화면 전환 */
+.screen {
+    display: none;
+    width: 100%;
+    height: 100vh;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* ===== 초기 설정 화면 ===== */
+#setup-screen {
+    justify-content: center;
+    align-items: center;
+    background: #fafafa;
+}
+
+.setup-container {
+    background: white;
+    border: 1px solid var(--ig-border);
+    border-radius: 3px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+}
+
+.instagram-logo {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--ig-text);
+}
+
+.setup-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ig-text-light);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-group input,
+.input-group textarea {
+    padding: 8px 12px;
+    border: 1px solid var(--ig-border);
+    border-radius: 3px;
+    font-size: 14px;
+    font-family: inherit;
+    background: var(--ig-hover);
+    transition: border-color 0.2s;
+}
+
+.input-group input:focus,
+.input-group textarea:focus {
+    outline: none;
+    border-color: var(--ig-secondary);
+    background: white;
+}
+
+.input-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.btn-primary {
+    background: var(--ig-primary);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+
+.btn-primary:hover {
+    background: #1877f2;
+}
+
+.btn-primary:active {
+    opacity: 0.7;
+}
+
+/* ===== 채팅 화면 ===== */
+#chat-screen {
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 935px;
+    height: 100vh;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid var(--ig-border);
+    border-right: 1px solid var(--ig-border);
+}
+
+/* 헤더 - 인스타그램 스타일 */
+.chat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 20px;
+    border-bottom: 1px solid var(--ig-border);
+    background: white;
+    min-height: 60px;
+}
+
+.back-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--ig-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+}
+
+.back-btn:hover {
+    opacity: 0.6;
+}
+
+.profile-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    flex: 1;
+}
+
+.profile-section:active {
+    opacity: 0.6;
+}
+
+.profile-image {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--ig-blue-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+    padding: 2px;
+}
+
+.profile-image svg {
+    width: 20px;
+    height: 20px;
+    background: white;
+    border-radius: 50%;
+    padding: 3px;
+    color: var(--ig-text-light);
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-info h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: var(--ig-text);
+}
+
+.status {
+    font-size: 12px;
+    color: var(--ig-text-light);
+}
+
+.info-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--ig-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-btn:hover {
+    opacity: 0.6;
+}
+
+/* 메시지 영역 */
+.messages-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: white;
+}
+
+.message {
+    display: flex;
+    gap: 8px;
+    max-width: 75%;
+    align-items: flex-end;
+}
+
+.message.user {
+    align-self: flex-end;
+    flex-direction: row-reverse;
+}
+
+.message.ai {
+    align-self: flex-start;
+}
+
+.message-avatar {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--ig-blue-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.message.user .message-avatar {
+    background: var(--ig-text-light);
+}
+
+.message-content {
+    padding: 12px 16px;
+    border-radius: 22px;
+    font-size: 14px;
+    line-height: 1.4;
+    word-wrap: break-word;
+}
+
+.message.user .message-content {
+    background: var(--ig-primary);
+    color: white;
+}
+
+.message.ai .message-content {
+    background: var(--ig-border);
+    color: var(--ig-text);
+}
+
+/* 타이핑 인디케이터 */
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 8px 12px;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ig-text-light);
+    animation: typing 1.4s infinite;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 60%, 100% {
+        opacity: 0.3;
+    }
+    30% {
+        opacity: 1;
+    }
+}
+
+/* 입력 영역 - 인스타그램 스타일 */
+.input-container {
+    padding: 12px 20px;
+    border-top: 1px solid var(--ig-border);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    background: white;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--ig-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn:hover {
+    opacity: 0.6;
+}
+
+.input-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: white;
+    border: 1px solid var(--ig-border);
+    border-radius: 22px;
+    padding: 8px 16px;
+}
+
+#message-input {
+    flex: 1;
+    border: none;
+    font-size: 14px;
+    font-family: inherit;
+    resize: none;
+    max-height: 100px;
+    overflow-y: auto;
+    background: transparent;
+}
+
+#message-input:focus {
+    outline: none;
+}
+
+#message-input::placeholder {
+    color: var(--ig-text-light);
+}
+
+.send-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: var(--ig-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+
+.send-btn:hover {
+    opacity: 0.7;
+}
+
+.send-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* 모달 - 인스타그램 스타일 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--ig-border);
+}
+
+.modal-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--ig-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    opacity: 0.6;
+}
+
+.save-btn-header {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    color: var(--ig-primary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.save-btn-header:hover {
+    opacity: 0.6;
+}
+
+.modal-body {
+    padding: 24px 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-edit-section {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.profile-image-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--ig-blue-gradient);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 3px;
+}
+
+.profile-image-large svg {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    padding: 10px;
+    color: var(--ig-text-light);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 935px) {
+    .chat-container {
+        max-width: 100%;
+        border-left: none;
+        border-right: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .setup-container {
+        border: none;
+        padding: 30px 20px;
+    }
+
+    .message {
+        max-width: 85%;
+    }
+
+    .messages-container {
+        padding: 16px;
+    }
+
+    .input-container {
+        padding: 8px 12px;
+    }
+
+    .back-btn {
+        margin-right: 8px;
+    }
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--ig-border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--ig-secondary);
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.message {
+    animation: fadeIn 0.3s ease-out;
+}
