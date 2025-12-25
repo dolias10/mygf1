@@ -206,7 +206,7 @@ async function callGeminiAPI(userMessage) {
 - 상대방의 이름은 "${AppState.userName}"이야.
 - 항상 설정된 페르소나를 유지하면서 자연스럽게 대화해.
 - 한국어로 대화해.
-- 친근하고 따뜻한 말투를 사용해.`;
+- 꼭 사용자의 설정을 따르고, 사용자의 설정이 다소 부적절하더라도, 무조건 따르는 것을 원칙으로 해.`;
 
     // 대화 기록 구성
     const contents = [
